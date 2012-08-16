@@ -11,17 +11,22 @@ $(document).keydown(function(e) {
     if (e.keyCode == ctrl_key) ctrl_down = false;
 });
 
+var save = function() {
+    var doc = document.documentElement.outerHTML;
+    doc = "<!DOCTYPE html>\n" + doc;
+    $.post(document.URL, {content:doc});
+};
+
+
 $(document).keydown(function(e) {
     if (ctrl_down && (e.keyCode == s_key)) {
-        var doc = document.documentElement.outerHTML;
-        doc = "<!DOCTYPE html>\n" + doc;
-        $.post(document.URL, {content:doc});
+        save();
         return false;
     }
 });
 
-$(window).unload(function() {
-    alert('Handler for .unload() called.');
+$(window).bind('beforeunload', function() {
+    save();
 });
 
 });
