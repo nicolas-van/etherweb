@@ -26,7 +26,7 @@ $(document).keydown(function(e) {
 });
 
 $(window).bind('beforeunload', function() {
-    save();
+    //save();
 });
 
 });
